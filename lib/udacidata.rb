@@ -76,16 +76,32 @@ class Udacidata
     return deleted
   end
 
-  # def self.find_by_brand(brand)
-  #   items = Udacidata.all
+  def self.where(hash = {})
+    h = hash.first
 
-  #   return items.find {|item| item.brand == brand}
-  # end
+    attribute = h[0]
+    value = h[1]
 
-  # def self.find_by_name(name)
-  #   items = Udacidata.all
+    items = Udacidata.all
 
-  #   return items.find {|item| item.name == name}
-  # end
+    return items.find_all {|item| item.send(attribute) == value}
+  end
 
+  def update(attributes = {})
+    table = CSV.table(@@data_path)
+
+    table.each do |row|
+      if row[:id] == self.id
+        attributes.each do |k, v|
+          row[k] = v
+        end    
+      end
+    end
+    
+    File.open(@@data_path, 'wb') do |f|
+      f.write(table.to_csv)
+    end
+
+    return Udacidata.find(self.id)
+  end
 end

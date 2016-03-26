@@ -6,7 +6,7 @@ require 'faker'
 def db_seed
   brands = ["Crayola", "Lego", "Nintendo", "Fisher-Price", "Hasbro"]
   product_names = ["crayons", "house", "video game", "kitchen", "toy car"] 
-  prices = ["2.00", "14.50", "2.10", "99.99", "19.99"] 
+  prices = ["2.01", "14.51", "2.11", "99.99", "19.99"] 
 
   10.times do
     # you will write the "create" method as part of your project
