@@ -3,9 +3,18 @@ require 'faker'
 # This file contains code that populates the database with
 # fake data for testing purposes
 
+
+
 def db_seed
-  brands = ["Crayola", "Lego", "Nintendo", "Fisher-Price", "Hasbro"]
-  product_names = ["crayons", "house", "video game", "kitchen", "toy car"] 
+  product_names = []
+  brands = []
+  10.times do
+    product_names << Faker::Commerce.product_name
+    brands << Faker::Commerce.department
+  end
+
+
+
   prices = ["2.01", "14.51", "2.11", "99.99", "19.99"] 
 
   10.times do
