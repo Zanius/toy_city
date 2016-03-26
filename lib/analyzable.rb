@@ -5,7 +5,20 @@ module Analyzable
   end
 
   def print_report(items)
-    return "string"
+    avg_price = average_price(items)
+    brands = count_by_brand(items)
+    names = count_by_name(items)
+
+    puts "Average Price: #{avg_price}"
+    puts "Inventory by Brand:"
+    brands.each do |k,v|
+      puts "  - #{k}: #{v}"
+    end
+
+    puts "Inventory by Name:" 
+    names.each do |k,v|
+      puts "  - #{k}: #{v}"
+    end
   end
 
   def count_by_brand(items)

@@ -57,12 +57,22 @@ class Udacidata
   def self.find(id)
     items = Udacidata.all
 
-    return items.find {|item| item.id == id}
+    item = items.find {|item| item.id == id}
+
+    if item
+      return item
+    else
+      raise ToyCityErrors::ProductNotFound, "No product with that id found."
+    end
   end
 
   def self.destroy(id)
     deleted = Udacidata.find(id)
 
+    unless deleted 
+      raise ToyCityErrors::ProductNotFound, "No product with that id found."
+    end 
+    
     table = CSV.table(@@data_path)
 
     table.delete_if do |row|
