@@ -9,16 +9,20 @@ module Analyzable
     brands = count_by_brand(items)
     names = count_by_name(items)
 
-    puts "Average Price: #{avg_price}"
-    puts "Inventory by Brand:"
+    string = ""
+
+    string += "Average Price: #{avg_price}\n"
+    string += "Inventory by Brand:\n"
     brands.each do |k,v|
-      puts "  - #{k}: #{v}"
+      string += "  - #{k}: #{v}\n"
     end
 
-    puts "Inventory by Name:" 
+    string += "Inventory by Name:\n" 
     names.each do |k,v|
-      puts "  - #{k}: #{v}"
+      string += "  - #{k}: #{v}\n"
     end
+
+    return string
   end
 
   def count_by_brand(items)
